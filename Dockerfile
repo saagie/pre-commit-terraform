@@ -97,7 +97,7 @@ RUN . /.env && \
 RUN . /.env \
     && if [ "$TERRAGRUNT_VERSION" != "false" ]; then \
     ( \
-        TERRAGRUNT_RELEASES="https://api.github.com/repos/gruntwork-io/terragrunt/releases" && \
+        TERRAGRUNT_RELEASES="https://api.github.com/repos/gruntwork-io/terragrunt/releases?per_page=100" && \
         [ "$TERRAGRUNT_VERSION" = "latest" ] && curl -L "$(curl -s ${TERRAGRUNT_RELEASES}/latest | grep -o -E -m 1 "https://.+?/terragrunt_${TARGETOS}_${TARGETARCH}")" > terragrunt \
         || curl -L "$(curl -s ${TERRAGRUNT_RELEASES} | grep -o -E -m 1 "https://.+?v${TERRAGRUNT_VERSION}/terragrunt_${TARGETOS}_${TARGETARCH}")" > terragrunt \
     ) && chmod +x terragrunt \
