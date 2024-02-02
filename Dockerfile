@@ -219,9 +219,7 @@ COPY --from=builder /root/ /root/
 RUN if [ "$(grep -o '^terraform-docs SKIPPED$' /usr/bin/tools_versions_info)" = "" ]; then \
         apk add --no-cache perl=~5 \
     ; fi && \
-    if [ "$(grep -o '^infracost SKIPPED$' /usr/bin/tools_versions_info)" = "" ]; then \
-        apk add --no-cache jq=~1 \
-    ; fi && \
+    apk add --no-cache jq=~1 && \
     # Fix git runtime fatal:
     # unsafe repository ('/lint' is owned by someone else)
     git config --global --add safe.directory /lint
